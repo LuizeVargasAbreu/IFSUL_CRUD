@@ -17,7 +17,7 @@ public  class Conexao {
 
     public static EntityManagerFactory getConexao() throws Exception {
         if ((emf == null) || (!emf.isOpen())) {
-             emf = Persistence.createEntityManagerFactory("JPAExemplo_1PU");
+             emf = Persistence.createEntityManagerFactory("IFSUL_CRUDPU");
         }
         return emf;
     }  
