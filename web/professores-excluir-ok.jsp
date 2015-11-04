@@ -6,7 +6,7 @@ String siape = request.getParameter("siape");
             
          <div>
              O Registro <%=siape%> foi excluído com sucesso.<br />
-             <a href="Professores.jsp">Voltar para Listagem</a>
+              <a href="professores.jsp">Voltar para Listagem</a>
          </div>
     </body>
 </html>

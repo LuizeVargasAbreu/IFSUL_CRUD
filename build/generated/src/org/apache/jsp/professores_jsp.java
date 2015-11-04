@@ -3,10 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.List;
 import modelo.Professor;
 import dao.ProfessorDAO;
 
-public final class professores_002dcadastrar_002dok_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class professores_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -48,8 +49,9 @@ public final class professores_002dcadastrar_002dok_jsp extends org.apache.jaspe
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-      out.write('\n');
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
@@ -65,49 +67,63 @@ public final class professores_002dcadastrar_002dok_jsp extends org.apache.jaspe
       out.write("            <div><a href=\"alunos.jsp\">Aluno</a> - <a href=\"professores.jsp\">Professores</a> - <a href=\"disciplinas.jsp\">Disciplina</a></div>\n");
       out.write("        </div>\n");
       out.write('\n');
-      out.write('\n');
 
-    if(request.getParameter("txtNome")== null || request.getParameter("txtSiape")== null)
-    {
-        //Retorna para a listagem através do método sendRedirect
-        response.sendRedirect("professores.jsp");
-    }
-    //Buscar as informações do formulário
-    String nome = request.getParameter("txtNome");
-    String siape = request.getParameter("txtSiape");
-    
-    //Criar meu objeto modelo
-    Professor prof = new Professor();
-    //Adiciono os valores enviados
-    prof.setNome(nome);
-    prof.setSiape(siape);
-    
-    //Instanciar a minha classe de acesso a dados
     ProfessorDAO dao = new ProfessorDAO();
-    // dao.incluir(prof);
-    //TENTA inserir, se der erro vai gerar uma exceção
-    //nesse caso trataremos a mensagem que será exibida para o usuário
-
-    //Através de uma variável mensagem
-    String mensagem;
-    try
-    {
-     dao.incluir(prof);
-     mensagem = "Registro cadastrado com sucesso";
-    }
-    catch (Exception e)
-    {
-     mensagem = "Não foi possível realizar a operação";           
-    }
+    //Chamando todos os registrosda minha tabela Professor
+    //retornados em forma de lista
+    List<Professor> profs = dao.listar();
+    
 
       out.write("\n");
-      out.write("         <h1 class=\"centro\">Cadastro de Professores</h1>\n");
+      out.write("        <div>\n");
+      out.write("            <h1 class=\"centro\">Professores</h1>\n");
       out.write("            \n");
-      out.write("         <div>\n");
-      out.write("             Registro cadastrado com sucesso.<br />\n");
-      out.write("             <a href=\"professores.jsp\">Voltar para Listagem</a>\n");
-      out.write("             \n");
-      out.write("         </div>\n");
+      out.write("            <div>\n");
+      out.write("                +<a href=\"professores-cadastrar.jsp\">Novo Professor</a><br />\n");
+      out.write("                <form>\n");
+      out.write("                    <input type=\"text\" />\n");
+      out.write("                    <input type=\"submit\" value=\"Pesquisar\"/><br />\n");
+      out.write("                    <table>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <th>Siape</th>\n");
+      out.write("                            <th>Nome</th>\n");
+      out.write("                            \n");
+      out.write("                            <th>Ações</th>\n");
+      out.write("                        </tr>\n");
+      out.write("                        ");
+
+                          for(Professor prof:profs)
+                          {    
+                        
+      out.write("\n");
+      out.write("    \n");
+      out.write("    \n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>");
+      out.print(prof.getSiape());
+      out.write("</td>\n");
+      out.write("                            <td>");
+      out.print(prof.getNome());
+      out.write("</td>\n");
+      out.write("                            <td><a href=\"professores-editar.jsp?siape=");
+      out.print(prof.getSiape());
+      out.write("\">Editar</a>\n");
+      out.write("                                <a href=\"professores-excluir-ok.jsp?siape=");
+      out.print(prof.getSiape());
+      out.write("\">Excluir</a>\n");
+      out.write("                            </td>\n");
+      out.write("                                                                  \n");
+      out.write("                        </tr>\n");
+      out.write("                         ");
+
+                          }    
+                        
+      out.write("\n");
+      out.write("                    </table>\n");
+      out.write("                    \n");
+      out.write("                </form>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
