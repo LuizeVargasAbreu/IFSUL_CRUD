@@ -5,16 +5,11 @@
 String nome = request.getParameter("txtnome");
 String matr = request.getParameter("txtmatricula");
 
-    if(request.getParameter("txtnome")== null || request.getParameter("txtmatricula")== null
-            || request.getParameter("txt")== null || request.getParameter("checkbox")== null)
+    if(request.getParameter("txtnome")== null || request.getParameter("txtmatricula")== null)
     {
-        //Retorna para a listagem através do método sendRedirect
         response.sendRedirect("alunos.jsp");
     }
-    //Buscar as informações do formulário
-    String nome = request.getParameter("txtnome");
-    String matricula = request.getParameter("txtmatricula");
-    
+  //  String nome = request.getParameter("txtnome");
     //Criar meu objeto modelo
     Aluno aluno1 = new Aluno();
     //Adiciono os valores enviados
