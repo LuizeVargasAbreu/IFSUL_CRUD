@@ -1,0 +1,17 @@
+SMAP
+professores_002dexcluir_002dok_jsp.java
+JSP
+*S JSP
+*F
++ 0 cabecalho.jsp
+cabecalho.jsp
++ 1 professores-excluir-ok.jsp
+professores-excluir-ok.jsp
+*L
+1,15:49
+1#1:63
+3,2:65
+4,4:67
+8:71,3
+9,5:74
+*E

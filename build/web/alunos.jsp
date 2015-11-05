@@ -1,4 +1,13 @@
+<%@page import="java.util.List"%>
+<%@page import="modelo.Aluno"%>
+<%@page import="dao.AlunoDAO"%>
 <%@include file="cabecalho.jsp"%>
+<%
+     AlunoDAO dao = new AlunoDAO();
+     
+     List<Aluno> aluno1 = dao.listar();
+%>
+    
         <div>
             <h1 class="centro">Alunos</h1>
             
@@ -15,36 +24,24 @@
                             <th>Matriculado</th>
                             <th>Ações</th>
                         </tr>
+                        <%
+                          for(Aluno alunos:aluno1)
+                        {    
+                        %>
+       
                         <tr>
-                            <td>1</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                            <td><a href="alunos-atualizar.jsp">Editar</a>
-                                <a href="alunos-excluir-ok.jsp?matricula=1">Excluir</a>
+                            <td><%=alunos.getMatricula()%></td>
+                            <td><%=alunos.getNome()%></td>
+                            <td><%=alunos.getDisciplinas()%></td>
+                            <td><%=alunos.getMatricula()%></td>
+                            <td><a href="alunos-atualizar.jsp?matricula=<%=alunos.getMatricula()%>">Editar</a>
+                                <a href="alunos-excluir-ok.jsp?matricula=<%=alunos.getMatricula()%>">Excluir</a>
                             </td>
                             
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                            <td><a href="alunos-atualizar.jsp">Editar</a>
-                                <a href="alunos-excluir-ok.jsp?matricula=2">Excluir</a>
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                            <td><a href="alunos-editar.jsp">Editar</a>
-                                <a href="alunos-excluir.jsp">Excluir</a>
-                            </td>
-                            
-                        </tr>
+                        <%
+                        }
+                        %>
                     </table>
                     
                 </form>
