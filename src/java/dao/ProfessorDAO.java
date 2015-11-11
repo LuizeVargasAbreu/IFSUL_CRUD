@@ -64,6 +64,7 @@ public class ProfessorDAO {
         EntityManager em = getEm();
         try {
             em.getTransaction().begin();
+            em.merge(obj);
             em.remove(obj);
             em.getTransaction().commit();
         } catch (RuntimeException e) {
@@ -73,6 +74,12 @@ public class ProfessorDAO {
         }
     }
     
+    //Buscar o registro por Chave Primária
+    public Professor buscarPorChavePrimaria (String siape) throws Exception
+    {
+        EntityManager em = getEm();
+        return em.find(Professor.class, siape);
+    }
     public void fechaEmf() {
         Conexao.closeConexao();
     }

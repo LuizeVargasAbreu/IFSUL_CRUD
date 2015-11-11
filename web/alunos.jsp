@@ -12,7 +12,7 @@
             <h1 class="centro">Alunos</h1>
             
             <div>
-                +<a href="alunos-cadastrar.jsp">Novo Aluno</a><br />
+                <a href="alunos-cadastrar.jsp">+ Novo Aluno</a><br />
                 <form>
                     <input type="text" />
                     <input type="submit" value="Pesquisar"/><br />

@@ -78,7 +78,7 @@ public final class alunos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <h1 class=\"centro\">Alunos</h1>\n");
       out.write("            \n");
       out.write("            <div>\n");
-      out.write("                +<a href=\"alunos-cadastrar.jsp\">Novo Aluno</a><br />\n");
+      out.write("                <a href=\"alunos-cadastrar.jsp\">+ Novo Aluno</a><br />\n");
       out.write("                <form>\n");
       out.write("                    <input type=\"text\" />\n");
       out.write("                    <input type=\"submit\" value=\"Pesquisar\"/><br />\n");

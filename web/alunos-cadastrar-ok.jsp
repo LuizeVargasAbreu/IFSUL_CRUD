@@ -14,16 +14,11 @@ String matr = request.getParameter("txtmatricula");
     Aluno aluno1 = new Aluno();
     //Adiciono os valores enviados
     aluno1.setNome(nome);
-    aluno1.setMatricula(matricula);
+   // aluno1.setMatricula(matricula);
     
     
     //Instanciar a minha classe de acesso a dados
     AlunoDAO dao = new AlunoDAO();
-    // dao.incluir(prof);
-    //TENTA inserir, se der erro vai gerar uma exceção
-    //nesse caso trataremos a mensagem que será exibida para o usuário
-
-    //Através de uma variável mensagem
     String mensagem;
     try
     {
