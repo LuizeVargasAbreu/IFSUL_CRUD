@@ -3,11 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.util.List;
 import modelo.Professor;
 import dao.ProfessorDAO;
 
-public final class professores_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class professores_002datualizar_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -49,9 +48,8 @@ public final class professores_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
+      out.write('\n');
+      out.write('\n');
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
@@ -68,62 +66,36 @@ public final class professores_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </div>\n");
       out.write('\n');
 
+  //Pegar a chave Primaria
+    String siape = request.getParameter("siape");
+    //Busco o registro pela chave no BANCO DE DADOS
     ProfessorDAO dao = new ProfessorDAO();
-    //Chamando todos os registrosda minha tabela Professor
-    //retornados em forma de lista
-    List<Professor> profs = dao.listar();
-    
+    //Para chamar pela chave primaria usaremos o método criado
+    //que retornará TODAS as informações do professor
+    Professor obj = dao.buscarPorChavePrimaria(siape);
 
       out.write("\n");
+      out.write("    \n");
       out.write("        <div>\n");
-      out.write("            <h1 class=\"centro\">Professores</h1>\n");
+      out.write("            <h1 class=\"centro\">Atualização de Professores</h1>\n");
       out.write("            \n");
       out.write("            <div>\n");
-      out.write("                +<a href=\"professores-cadastrar.jsp\">Novo Professor</a><br />\n");
-      out.write("                <form>\n");
-      out.write("                    <input type=\"text\" />\n");
-      out.write("                    <input type=\"submit\" value=\"Pesquisar\"/><br />\n");
-      out.write("                    <table>\n");
-      out.write("                        <tr>\n");
-      out.write("                            <th>Siape</th>\n");
-      out.write("                            <th>Nome</th>\n");
-      out.write("                            \n");
-      out.write("                            <th>Ações</th>\n");
-      out.write("                        </tr>\n");
-      out.write("                        ");
-
-                          for(Professor prof:profs)
-                          {    
-                        
-      out.write("\n");
-      out.write("    \n");
-      out.write("    \n");
-      out.write("                        <tr>\n");
-      out.write("                            <td>");
-      out.print(prof.getSiape());
-      out.write("</td>\n");
-      out.write("                            <td>");
-      out.print(prof.getNome());
-      out.write("</td>\n");
-      out.write("                            <td><a href=\"professores-atualizar.jsp?siape=");
-      out.print(prof.getSiape());
-      out.write("\">Editar</a>\n");
-      out.write("                                <a href=\"professores-excluir-ok.jsp?siape=");
-      out.print(prof.getSiape());
-      out.write("\">Excluir</a>\n");
-      out.write("                            </td>\n");
-      out.write("                                                                  \n");
-      out.write("                        </tr>\n");
-      out.write("                         ");
-
-                          }    
-                        
-      out.write("\n");
-      out.write("                    </table>\n");
-      out.write("                    \n");
+      out.write("                \n");
+      out.write("                <form action=\"professores-atualizar-ok.jsp\">\n");
+      out.write("                    <label>Nome:</label><input type=\"text\" value=\"");
+      out.print(obj.getSiape());
+      out.write("\"/><br />\n");
+      out.write("                    <label>Siape:</label><input type=\"text\" value=\"");
+      out.print(obj.getNome());
+      out.write("\"/><br />\n");
+      out.write("            \n");
+      out.write("                    <input type=\"submit\" value=\"Atualizar\" />\n");
       out.write("                </form>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.util.List;
@@ -10,27 +5,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import modelo.Aluno;
 
-/**
- *
- * @author aluno
- */
 public class AlunoDAO {
-    public AlunoDAO() {
-        
-    }
+    EntityManager em;
     
-    public EntityManager getEm() throws Exception {
+    public AlunoDAO() throws Exception {
         EntityManagerFactory emf;
         emf = Conexao.getConexao();
-        return emf.createEntityManager();
+        em = emf.createEntityManager();
     }
     
-    public void incluir(Aluno aluno) throws Exception {
-        EntityManager em = getEm();
-//        cliente = em.getReference(Cliente.class,cliente.getId()); 
+    public void incluir(Aluno obj) throws Exception {
         try {
             em.getTransaction().begin();
-            em.persist(aluno);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (RuntimeException e) {
             em.getTransaction().rollback();
@@ -41,13 +28,13 @@ public class AlunoDAO {
         }
         
     }
-    
+
     public List<Aluno> listar() throws Exception {
-        return getEm().createNamedQuery("Aluno.findAll").getResultList();
+        return em.createNamedQuery("Aluno.findAll").getResultList();
     }
     
     public void alterar(Aluno obj) throws Exception {
-        EntityManager em = getEm();
+        
         try {
             em.getTransaction().begin();
             em.merge(obj);
@@ -61,7 +48,7 @@ public class AlunoDAO {
     }
     
     public void excluir(Aluno obj) throws Exception {
-        EntityManager em = getEm();
+        
         try {
             em.getTransaction().begin();
             em.remove(obj);
@@ -73,9 +60,16 @@ public class AlunoDAO {
         }
     }
     
+    public Aluno buscarPorChavePrimaria(String chave)
+    {
+        return em.find(Aluno.class, chave);
+    }
+    
     public void fechaEmf() {
         Conexao.closeConexao();
     }
+    
+
     
 
             

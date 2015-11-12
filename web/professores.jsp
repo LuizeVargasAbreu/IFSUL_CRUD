@@ -33,7 +33,7 @@
                         <tr>
                             <td><%=prof.getSiape()%></td>
                             <td><%=prof.getNome()%></td>
-                            <td><a href="professores-editar.jsp?siape=<%=prof.getSiape()%>">Editar</a>
+                            <td><a href="professores-atualizar.jsp?siape=<%=prof.getSiape()%>">Editar</a>
                                 <a href="professores-excluir-ok.jsp?siape=<%=prof.getSiape()%>">Excluir</a>
                             </td>
                                                                   

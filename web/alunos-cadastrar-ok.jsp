@@ -9,12 +9,11 @@ String matr = request.getParameter("txtmatricula");
     {
         response.sendRedirect("alunos.jsp");
     }
-  //  String nome = request.getParameter("txtnome");
     //Criar meu objeto modelo
     Aluno aluno1 = new Aluno();
     //Adiciono os valores enviados
     aluno1.setNome(nome);
-   // aluno1.setMatricula(matricula);
+    aluno1.setMatricula(matr);
     
     
     //Instanciar a minha classe de acesso a dados

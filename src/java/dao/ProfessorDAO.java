@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.util.List;
@@ -10,24 +5,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import modelo.Professor;
 
-/**
- *
- * @author obj
- */
 public class ProfessorDAO {
-    public ProfessorDAO() {
-        
-    }
+    EntityManager em;
     
-    public EntityManager getEm() throws Exception {
+    public ProfessorDAO() throws Exception {
         EntityManagerFactory emf;
         emf = Conexao.getConexao();
-        return emf.createEntityManager();
+        em = emf.createEntityManager();
     }
     
     public void incluir(Professor obj) throws Exception {
-        EntityManager em = getEm();
-//        cliente = em.getReference(Cliente.class,cliente.getId()); 
         try {
             em.getTransaction().begin();
             em.persist(obj);
@@ -41,13 +28,13 @@ public class ProfessorDAO {
         }
         
     }
-    
+
     public List<Professor> listar() throws Exception {
-        return getEm().createNamedQuery("Professor.findAll").getResultList();
+        return em.createNamedQuery("Professor.findAll").getResultList();
     }
     
     public void alterar(Professor obj) throws Exception {
-        EntityManager em = getEm();
+        
         try {
             em.getTransaction().begin();
             em.merge(obj);
@@ -61,10 +48,9 @@ public class ProfessorDAO {
     }
     
     public void excluir(Professor obj) throws Exception {
-        EntityManager em = getEm();
+        
         try {
             em.getTransaction().begin();
-            em.merge(obj);
             em.remove(obj);
             em.getTransaction().commit();
         } catch (RuntimeException e) {
@@ -74,16 +60,16 @@ public class ProfessorDAO {
         }
     }
     
-    //Buscar o registro por Chave Primária
-    public Professor buscarPorChavePrimaria (String siape) throws Exception
+    public Professor buscarPorChavePrimaria(String chave)
     {
-        EntityManager em = getEm();
-        return em.find(Professor.class, siape);
+        return em.find(Professor.class, chave);
     }
+
     public void fechaEmf() {
         Conexao.closeConexao();
     }
     
+
 
                     
 }
